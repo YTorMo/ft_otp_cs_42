@@ -22,7 +22,7 @@ def text_encrypt(txt):
 		print ("Password length must be 16 characters.")
 		exit(1)
 	
-	args_encryp[2] = pass_key
+	args_encryp[2] = pass_key.encode("utf-8")
 
 	encrypter = AES.new(args_encryp[2], AES.MODE_CBC, args_encryp[0])
 
@@ -42,11 +42,11 @@ def text_decrypt(txt):
 		exit(1)
 	
 	try:
-		args_encryp[2] = pass_key
+		args_encryp[2] = pass_key.encode("utf-8")
 
 		decrypter = AES.new(args_encryp[2], AES.MODE_CBC, args_encryp[0])
-
-		decrypt_txt = unpad(decrypter.decrypt(txt.encode("utf-8"), args_encryp[1]).decode("utf-8", "ignore"))
+		
+		decrypt_txt = unpad(decrypter.decrypt(txt), args_encryp[1]).decode("utf-8", "ignore")
 	except:
 		print("Invalid password.")
 		exit(1)
@@ -78,7 +78,7 @@ def file_decrypt(file):
 
 	return decrypt_cont
 
-def file_decrypt(file):
+def file_reader(file):
 
 	with open(file, "rb") as f:
 		content = f.read()

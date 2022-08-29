@@ -4,3 +4,4 @@ pyvenv.cfg
 /include
 /bin
 .DS_Store
+crypter.pyc
